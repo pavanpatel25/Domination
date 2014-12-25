@@ -9,6 +9,9 @@ import ddf.minim.*;
 AudioPlayer player;
 Minim minim;
 
+//position of picture of dinosaur
+float x1, x2, y1,y2;
+
 void setup() {
   background(0);
   size(800, 600);
@@ -22,12 +25,16 @@ void setup() {
   CaveMaze = loadImage("BMaze.PNG");
   
   //image of the dinosaur from blog.chron.com
-  Dinosaur = loadImage("smalldinosaur.jpg");
+  Dinosaur = loadImage("smallerdinosaur.png");
 }
 
 void draw() {
+  x1 = 5;
+  x2 = 5+Dinosaur.width;
+  y1 = height-Dinosaur.height;
+  y2 = height - 30;
   image(CaveMaze, 0, 0, width, height);
-  image(Dinosaur, 5, height-Dinosaur.height-30, 5+Dinosaur.width,height-30);
+  image(Dinosaur, x1,y1, x2,y2);
 
 }
 

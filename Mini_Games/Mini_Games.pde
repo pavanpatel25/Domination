@@ -1,14 +1,5 @@
 
-
-void setup() {
-  
-  
-  
+void Maze() {
 }
 
 
-void draw() {
-  
-  
-  
-}

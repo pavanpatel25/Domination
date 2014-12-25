@@ -15,7 +15,7 @@ Mini-Games:
     1. Maze -- Get the Dinosaur out of the cave and into the open.
     2. Dodge lasers 
        - The Earth's magnetic field has broken. Lasers are spewing at you. Make sure you don't die!
-    3. Lava is raining down from the sky. Make sure you don't get burned!
+    3. Race with your fellow dinosaur to get to the forest first. There is only enough food for one of you!
     4. Shoot the leaves into the basket to make sure you have enough food for the volcano eruption.
     5. Survive the lava by defeating the lava monster (in a quasi-pokemon match) 
 

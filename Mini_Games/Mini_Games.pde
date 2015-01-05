@@ -1,4 +1,6 @@
 
+
+
 //game #1
 Maze m;
 //game #2

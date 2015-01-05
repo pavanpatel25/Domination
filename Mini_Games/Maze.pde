@@ -7,7 +7,8 @@ class Maze {
   PImage Dinosaur;
 
   //setup for the music
-  import ddf.minim.*;
+  
+
   AudioPlayer player;
   Minim minim;
 
@@ -18,10 +19,18 @@ class Maze {
     background(0);
     size(800, 600);
 
-    //loading the file for the music
-    minim = new Minim(this);
-    player = minim.loadFile("Happy.mp3", 2048);
-    player.play();
+//    //loading the file for the music
+//    minim = new Minim(this);
+//    player = minim.loadFile("C:\\Users\\ppatel4\\Documents\\GitHub\\Domination\\Mini_Games\\data\\Happy.mp3", 2048);
+//    player.play();
+
+//loading music file
+import ddf.minim.spi.*;
+import ddf.minim.signals.*;
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.ugens.*;
+import ddf.minim.effects.*;
 
     //image of the maze in the cave
     CaveMaze = loadImage("BMaze.PNG");

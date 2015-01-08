@@ -22,7 +22,7 @@ class Maze {
     minim = new Minim(this);
     player = minim.loadFile("Happy.mp3", 2048);
     player.play();
-0p[[[[[[[[[
+
     //image of the maze in the cave
     CaveMaze = loadImage("BMaze.PNG");
 

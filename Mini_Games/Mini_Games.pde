@@ -19,9 +19,9 @@ void setup() {
 }
 
 void draw() {
-  m.setup();
-  m.draw();
-  m.stop();
+//  m.setup();
+//  m.draw();
+//  m.stop();
   
   
 }

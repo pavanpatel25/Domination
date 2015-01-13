@@ -1,17 +1,12 @@
-class Race{
+class Race {
 
-void setup() {
-  
-  
-  
-  
+  void setup() {
+    background(0);
+    size(displayWidth, displayHeight);
+  }
+
+
+  void draw() {
+  }
 }
 
-
-void draw() {
-  
-  
-  
-}
-
-}

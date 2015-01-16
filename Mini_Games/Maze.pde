@@ -6,6 +6,7 @@ float x1=750;
 float y1=387.5;
 float x2=750;
 float y2=412.5;
+float lives=3;
 
 void setup() {
   size(800, 800);
@@ -23,7 +24,7 @@ void draw() {
     if (x<i*70+10+10) {
       if (x>i*70+10-10) {
         if (y>50) {
-          if (y<i*30+20) {
+          if (y<i*30+10) {
             //            if (x>i*70+10) {
             //              x=x+35;
             //            }
@@ -43,7 +44,7 @@ void draw() {
         if (y>800-i*30) {
           if (y<750) {
             if (x<i*70+10) {
-              x=x+35;
+              x=x-35;
             }
           }
         }
@@ -52,6 +53,15 @@ void draw() {
   }
   for (int i=1; i<9; i++) {
     line(i*70+10, i*30+75, i*70+10, 800-i*30-75);
+    if(x<i*70+10+10){
+      if(x>i*70+10-10){
+        if(y>i*30+75){
+          if(y<800-i*30-75){
+            x=x-35;
+          }
+        }
+      }
+    }
   }
   for (int i=1; i<10; i++) {
     strokeWeight(1);
@@ -65,6 +75,21 @@ void draw() {
     if (ye>800) {
       ye=25;
     }
+    if (x>i*70+10+35-10) {
+      if (x<i*70+10+35+10) {
+        if (y>ye-5) {
+          if (y<ye+5) {
+            lives=lives-1;
+            x=40;
+            y=400;
+          }
+        }
+      }
+    }
+  }
+  if (lives<1) {
+    textSize(25);
+    text("You lose!", 600, 400);
   }
   fill(0);
   ellipse(750, 387.5, 25, 25);
@@ -77,12 +102,41 @@ void draw() {
     x1=750;
     y1=387.5;
   }
+  if (x<x1+5) {
+    if (x>x1-5) {
+      if (y<y1+5) {
+        if (y>y1-5) {
+          lives=lives-1;
+          x=40;
+          y=400;
+        }
+      }
+    }
+  }
   ellipse(x2, y2, 10, 10);
   y2=y2+1;
   x2=x2-2;
   if (x2<0) {
     x2=750;
     y2=412.5;
+  }
+  if (x<x2+5) {
+    if (x>x2-5) {
+      if (y<y2+5) {
+        if (y>y2-5) {
+          lives=lives-1;
+          x=40;
+          y=400;
+        }
+      }
+    }
+  }
+  if (lives>0) {
+    text(lives, 25, 25);
+  }
+  if (x>750) {
+    textSize(25);
+    text("You Win!", 600, 400);
   }
   if (keyPressed==true) {
     if (key == CODED) {

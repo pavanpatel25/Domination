@@ -38,6 +38,7 @@ class MAZE {
         }
       }
     }
+    //for loop
     for (int i=1; i<11; i++) {
       line(i*70+10, 750, i*70+10, 800-i*30);
       //You shall not pass!

@@ -5,7 +5,7 @@ class LASERS {
 
   //position of dinosaur
   int x = 0;
-  int y = 0;
+  int y = height/2;
 
   int dx = 25;
   int dy = 10;
@@ -15,7 +15,7 @@ class LASERS {
   boolean gameOver = false;
 
   //sets up how many lasers
-  int count = 70;
+  int count = 100;
 
   //movement of the lasers
   PVector[] loc1 = new PVector[count];
@@ -35,7 +35,9 @@ class LASERS {
     dinosaur = loadImage("dino.png");
     //initialize variables for the movement of lasers
     for (int i = 0; i<count; i++) {
-      loc1[i] = new PVector(random(width/8, width), random(5, height));
+      //leftmost x coordinate for rectangle that represents lasers
+      loc1[i] = new PVector(random(width/2, 2*width), random(5, height));
+      //rightmost x-o
       loc2[i] = new PVector(loc1[i].x-75, loc1[i].y+5);
       vel[i] = new PVector(-100, 0);
       acc[i] = new PVector(0, 0);
@@ -45,6 +47,7 @@ class LASERS {
   }
 
   void game() {
+    println(y);
     background(0);
     //timer goes if game is not over
     if (!gameOver) {
@@ -57,6 +60,14 @@ class LASERS {
     //timer displays in top right corner of screen
     text(p, width-100, 50);
     textSize(25);
+
+    if (y >= height) {
+      y = height-dinosaur.height;
+    }
+    if (y <= 0) {
+      y = 0;
+    }
+
     if (keyPressed) {
       if (key == CODED) {
         if (keyCode == DOWN) {
@@ -102,13 +113,13 @@ class LASERS {
         vel[i].x = 0;
       }
       //increasing laser speed to make it harder to dodge them
-      if ((p/1000) > 15 && (p/1000) <= 25) {
+      if ((p) > 15 && (p/1000) <= 25) {
         vel[i].x = 2*vel[i].x;
       }
-      if ((p/1000) >25 && (p/1000) <=35) {
+      if ((p) >25 && (p/1000) <=35) {
         vel[i].x = 4*vel[i].x;
       }
-      if ((p/1000) >35) {
+      if ((p) >35) {
         vel[i].x = 6*vel[i].x;
       }
     }

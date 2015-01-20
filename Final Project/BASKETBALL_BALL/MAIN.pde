@@ -21,6 +21,7 @@ void setup() {
 }
 
 void draw() {
+
   if (gamevariable == 0) {
     imageMode(CORNER);
     image(Main, 0, 0);

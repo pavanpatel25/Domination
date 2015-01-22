@@ -1,0 +1,164 @@
+class MAZE {
+
+  PImage knight;
+  float x=40;
+  float y=400;
+  float ye=25;
+  float x1=750;
+  float y1=387.5;
+  float x2=750;
+  float y2=412.5;
+  int lives=3;
+  int time;
+
+  MAZE() {
+    bkg = loadImage("mazebkg.png");
+    knight = loadImage("dinosaurback.png");
+  }
+
+  void game() {
+    background(255, 255, 255);
+    image(bkg,0,0);
+    image(knight, x, y, 25, 25);
+    fill(0);
+    strokeWeight(20);
+    for (int i=1; i<11; i++) {
+      line(i*70+10, 50, i*70+10, i*30);
+      //You shall not pass!
+      if (x<i*70+10+10) {
+        if (x>i*70+10-10) {
+          if (y>50) {
+            if (y<i*30+10) {
+              //            if (x>i*70+10) {
+              //              x=x+35;
+              //            }
+              if (x<i*70-10) {
+                x=x-35;
+              }
+            }
+          }
+        }
+      }
+    }
+    for (int i=1; i<11; i++) {
+      line(i*70+10, 750, i*70+10, 800-i*30);
+      //You shall not pass!
+      if (x<i*70+10+10) {
+        if (x>i*70+10-10) {
+          if (y>800-i*30) {
+            if (y<750) {
+              if (x<i*70+10) {
+                x=x-35;
+              }
+            }
+          }
+        }
+      }
+    }
+    for (int i=1; i<9; i++) {
+      line(i*70+10, i*30+75, i*70+10, 800-i*30-75);
+      if (x<i*70+10+10) {
+        if (x>i*70+10-10) {
+          if (y>i*30+75) {
+            if (y<800-i*30-75) {
+              x=x-35;
+            }
+          }
+        }
+      }
+    }
+    for (int i=1; i<10; i++) {
+      strokeWeight(1);
+      ellipse(i*70+10+35, 25, 25, 25);
+    }
+    for (int i=1; i<10; i++) {
+      fill(11, 24, 237);
+      strokeWeight(1);
+      ellipse(i*70+10+35, ye, 10, 10);
+      ye=ye+0.25;
+      if (ye>800) {
+        ye=25;
+      }
+      if (x>i*70+10+35-10) {
+        if (x<i*70+10+35+10) {
+          if (y>ye-5) {
+            if (y<ye+5) {
+              lives=lives-1;
+              x=40;
+              y=400;
+            }
+          }
+        }
+      }
+    }
+    if (lives<1) {
+      textSize(25);
+      text("You lose!", 600, 400);
+      time = time + 1;
+    }
+    fill(0);
+    ellipse(750, 387.5, 25, 25);
+    ellipse(750, 412.5, 25, 25);
+    fill(11, 24, 237);
+    ellipse(x1, y1, 10, 10);
+    y1=y1-1;
+    x1=x1-2;
+    if (x1<0) {
+      x1=750;
+      y1=387.5;
+    }
+    if (x<x1+5) {
+      if (x>x1-5) {
+        if (y<y1+5) {
+          if (y>y1-5) {
+            lives=lives-1;
+            x=40;
+            y=400;
+          }
+        }
+      }
+    }
+    ellipse(x2, y2, 10, 10);
+    y2=y2+1;
+    x2=x2-2;
+    if (x2<0) {
+      x2=750;
+      y2=412.5;
+    }
+    if (x<x2+5) {
+      if (x>x2-5) {
+        if (y<y2+5) {
+          if (y>y2-5) {
+            lives=lives-1;
+            x=40;
+            y=400;
+          }
+        }
+      }
+    }
+    if (lives>0) {
+      text(lives, 25, 25);
+    }
+    if (x>750) {
+      textSize(25);
+      text("You Win!", 600, 400);
+    }
+    if (keyPressed==true) {
+      if (key == CODED) {
+        if (keyCode == RIGHT) {
+          x=x+2;
+        }
+        if (keyCode == LEFT) {
+          x=x-2;
+        }
+        if (keyCode == DOWN) {
+          y=y+2;
+        }
+        if (keyCode == UP) {
+          y=y-2;
+        }
+      }
+    }
+  }
+}
+

@@ -17,8 +17,9 @@ void setup() {
 
 void draw() {
   if (gamevariable == 0) {
+    imageMode(CORNER);
     image(Main, 0, 0);
-    image(cursor, mouseX,mouseY);
+    image(cursor, mouseX, mouseY);
     b.time = 0;
     b.score = 0;
     if (mousePressed) {
@@ -54,15 +55,19 @@ void draw() {
       text(b.score, width/2, 100);
     }
   }
-  if(gamevariable == 1 && b.score>=100000){
+  if (gamevariable == 1 && b.score>=100000) {
     gamevariable = 0;
     b = new BASKETBALL();
   }
-  if(gamevariable == 2){
+  if (gamevariable == 2 && r.time2 <=180) {
     r.bkg();
     r.obstacles();
     r.car();
     r.crash();
+  }
+  if (gamevariable == 2 && r.time2 >=180) {
+    gamevariable = 0;
+    r = new RACING();
   }
 }
 void mouseClicked() {

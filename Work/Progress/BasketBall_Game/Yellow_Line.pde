@@ -11,6 +11,7 @@ class YLINE{
   }
   
   void create(){
+    noStroke();
     fill(#f1c40f);
     rect(loc.x,loc.y,szx,szy);
   }

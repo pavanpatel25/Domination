@@ -13,6 +13,7 @@ class OBST {
   }
 
   void create() {
+    imageMode(CENTER);
     if (variable == 1) {
       image(dog, loc.x, loc.y);
     }

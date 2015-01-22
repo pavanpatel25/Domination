@@ -12,6 +12,7 @@ class BASKETBALL {
     bkg = loadImage("background.png");
   }
   void game() {
+    rectMode(CORNER);
     noCursor();
 
     image(bkg, 0, 0);

@@ -2,20 +2,29 @@ class RACING {
   CAR c;
   float locx;
   int hit_or_not = 0;
-  int time;
-  PImage rbkg, car;
+  int time,time2;
+  float timer;
+  float start=0;
+  PImage rbkg, car, strt;
   ArrayList<YLINE> y = new ArrayList<YLINE>();
   ArrayList<OBST> o = new ArrayList<OBST>();
 
   RACING() {
     rbkg = loadImage("racingbkg.png");
+    strt = loadImage("start.png");
     c = new CAR();
   }
   void bkg() {
-
+    if (time>120 && hit_or_not !=1) {
+      timer=timer+.016666666;
+    }
+    start = start+5;
     time = time + 1;
     imageMode(CORNER);
     image(rbkg, 0, 0);
+    image(strt, 479, start);
+    fill(255);
+    text(timer, 3*width/4, 200);
     for ( int i = 0; i<y.size (); i++) {
       YLINE currentLine = y.get(i);
       currentLine.create();
@@ -28,13 +37,11 @@ class RACING {
   void obstacles() {
     for ( int j = 0; j<o.size (); j++) {
       OBST currentOBST = o.get(j);
-      println(c.loc.y);
-      println(abs((currentOBST.loc.x)-(c.loc.x))<=78);
-      println();
+      println(j);
 
       currentOBST.create();
       currentOBST.move();
-      if (abs((currentOBST.loc.x)-(c.loc.x))<=40 && currentOBST.loc.y> 700 && currentOBST.loc.y<870) {
+      if (abs((currentOBST.loc.x)-(c.loc.x))<=30 && currentOBST.loc.y> 682 && currentOBST.loc.y<870) {
         hit_or_not = 1;
       }
     }
@@ -48,6 +55,9 @@ class RACING {
   }
   void crash() {
     if (hit_or_not==1) {
+      time2 = time2+1;
+      fill(255);
+      stroke(0);
       text("CRASH", 720, 100);
       for ( int k = 0; k<o.size (); k++) {
         OBST currentOBST = o.get(k);
@@ -64,3 +74,4 @@ class RACING {
     }
   }
 }
+

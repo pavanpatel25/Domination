@@ -1,7 +1,7 @@
 A[] maze = new A[1];
 PImage knight;
 
-void setup() {
+/*void setup() {
   size(800, 800);
   knight = loadImage("knight.png");
   for (int i = 0; i < 1; i++) { 
@@ -18,7 +18,7 @@ void draw() {
     maze[i].shooters();
     maze[i].score();
   }
-}
+}*/
 
 class A {
   float x;

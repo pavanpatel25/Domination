@@ -11,6 +11,7 @@ class BASKETBALL {
     dino = loadImage("dinosaur.png");
     bkg = loadImage("background.png");
   }
+
   void game() {
     rectMode(CORNER);
     noCursor();
@@ -29,17 +30,21 @@ class BASKETBALL {
         score++;
       }
     }
+
     if (score >= 20) {
       time =time+1;
     }
+
     fill(0);
     if (time < 300 && time > 1) {
       text("YOU WON", width/2, 100);
     }
+
     if (time>300) {
       score = 100000;
       time = 0;
     }
+    
     noFill();
     rect(0, 0, 150, 50);
     fill(255, 0, 0);
@@ -57,3 +62,4 @@ class BASKETBALL {
     }
   }
 }
+

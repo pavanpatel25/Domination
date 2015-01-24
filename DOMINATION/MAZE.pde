@@ -1,4 +1,6 @@
+//Initialize class
 class A {
+  //Declare variables
   float x;
   float y;
   float ye;
@@ -9,8 +11,9 @@ class A {
   int lives;
   int time=0;
   PImage bkg;
-
+  
   A() {
+  //Declare some variables
     x=40;
     y=400;
     ye=25;
@@ -31,7 +34,7 @@ class A {
     //Upper walls
     for (int i=1; i<11; i++) {
       line(i*70+10, 50, i*70+10, i*30);
-      //You shall not pass! Upper section.
+      //You shall not pass! Stopping character from going through walls. Upper section
       if (y<i*30) {
         if (y>50) {
           if (x>i*70+10) {
@@ -51,7 +54,7 @@ class A {
     //Lower walls
     for (int i=1; i<11; i++) {
       line(i*70+10, 750, i*70+10, 800-i*30);
-      //You shall not pass! Lower section
+      //You shall not pass! Stopping character from going through walls. Lower section
       if (y<750) {
         if (y>800-i*30) {
           if (x>i*70+10) {
@@ -71,7 +74,7 @@ class A {
     //Middle walls
     for (int i=1; i<9; i++) {
       line(i*70+10, i*30+75, i*70+10, 800-i*30-75);
-      //You shall not pass! Middle section
+      //You shall not pass! Stopping character from going through walls. Middle section
       if (y>i*30+75) {
         if (y<800-i*30-75) {
           if (x>i*70+10) {
@@ -125,7 +128,7 @@ class A {
       ellipse(i*70+10+35, 25, 25, 25);
     }
 
-    //Upper shooters projectiles
+    //Upper shooters' projectiles
     for (int i=1; i<10; i++) {
       fill(11, 24, 237);
       strokeWeight(1);
@@ -149,7 +152,7 @@ class A {
     ellipse(750, 412.5, 25, 25);
     fill(11, 24, 237);
 
-    //End shooters projectiles
+    //End shooters' projectiles
     ellipse(x1, y1, 10, 10);
     y1=y1-1;
     x1=x1-2;
@@ -157,6 +160,8 @@ class A {
       x1=750;
       y1=387.5;
     }
+    
+    //Dying
     if (abs(x-x1)<10) {
       if (abs(y-y1)<10) {
         x=40;
@@ -171,6 +176,8 @@ class A {
       x2=750;
       y2=412.5;
     }
+    
+    //Dying
     if (abs(x-x2)<10) {
       if (abs(y-y2)<10) {
         x=40;
@@ -180,6 +187,7 @@ class A {
     }
   }
 
+  //Lives
   void score() {
     textSize(50);
     text(lives, 25, 50);

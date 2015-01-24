@@ -90,6 +90,15 @@ class A {
   }
 
   void move() {
+
+    //closing loophole that allowed players to circumvent obstacles
+    if (y >=770) {
+      y = 770;
+    }
+    if (x <= 32) {
+      x = 32;
+    }
+
     //Movement
     if (keyPressed==true) {
       if (key == CODED) {

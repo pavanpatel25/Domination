@@ -1,15 +1,44 @@
+//basketball game
 BASKETBALL b;
+//racing game
 RACINGEASY r1;
 RACINGMEDIUM r2;
 RACINGHARD r3;
+//maze game
 A m;
+//lasers game
 LASERS l;
+//lava monster game
 LAVA lm;
+
+//loads welcome screen
+/*
+bkg is the background for basketball game
+ Main is the initial welcome screen
+ bkg2 appears to display levels when racing game is selected
+ */
 PImage bkg, bkg2;
 PImage Main;
-int gamevariable=0;
 PImage cursor;
 PImage knight;
+
+int gamevariable=0;
+
+//sound
+import ddf.minim.spi.*;
+import ddf.minim.signals.*;
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.ugens.*;
+import ddf.minim.effects.*;
+
+Minim minim;
+AudioPlayer hoops;
+AudioPlayer pew_pew;
+AudioPlayer pokemon;
+AudioPlayer vroom;
+AudioPlayer donde;
+
 void setup() {
   size(1440, 900);
   Main = loadImage("Main Screen Background.png");
@@ -26,6 +55,13 @@ void setup() {
   l = new LASERS();
   lm = new LAVA();
   noCursor();
+
+  minim = new Minim(this);
+  hoops = minim.loadFile("Happy.mp3");
+  pew_pew = minim.loadFile("Funk.mp3");
+  pokemon = minim.loadFile("pokemon.mp3");
+  vroom = minim.loadFile("Power.mp3");
+  donde = minim.loadFile("pokemon.mp3");
 }
 
 void draw() {
@@ -68,10 +104,12 @@ void draw() {
     if (b.time == 0) {
       text(b.score, width/2, 100);
     }
+    hoops.play();
   }
   if (gamevariable == 1 && b.score>=100000) {
     gamevariable = 0;
     b = new BASKETBALL();
+    hoops.close();
   }
   //RACING STOP/START
   if (gamevariable == 2 ) {
@@ -125,38 +163,47 @@ void draw() {
     r1.obstacles();
     r1.car();
     r1.crash();
+    vroom.play();
   }
   if (gamevariable == 101 && r1.time2 >=60) {
     gamevariable = 0;
     r1 = new RACINGEASY();
+    vroom.close();
   }
   if (gamevariable == 102) {
     r2.bkg();
     r2.obstacles();
     r2.car();
     r2.crash();
+    vroom.play();
   }
   if (gamevariable == 102 && r2.time2 >=60) {
     gamevariable = 0;
     r2 = new RACINGMEDIUM();
+    vroom.close();
   }
   if (gamevariable == 103) {
     r3.bkg();
     r3.obstacles();
     r3.car();
     r3.crash();
+    vroom.play();
   }
   if (gamevariable == 103 && r3.time2 >=60) {
     gamevariable = 0;
     r3 = new RACINGHARD();
+    vroom.close();
   }
+
   //LAVAMONSTER STOP/START
   if (gamevariable == 3 && lm.time <=180) {
     lm.game();
+    pokemon.play();
   }
   if (gamevariable == 3 && lm.time >=180) {
     gamevariable = 0;
     lm = new LAVA();
+    pokemon.close();
   }
 
   //MAZE GAME STOP/START
@@ -166,18 +213,23 @@ void draw() {
     m.move();
     m.shooters();
     m.score();
+    donde.play();
   }
   if (gamevariable == 4 && m.time >=180) {
     gamevariable = 0;
     m = new A();
+    donde.close();
   }
+
   //LASER GAME STOP/START
   if (gamevariable == 5 && l.time <=180) {
     l.game();
+    pew_pew.play();
   }
   if (gamevariable == 5 && l.time >=180) {
     gamevariable = 0;
     l = new LASERS();
+    pew_pew.close();
   }
 }
 void mouseClicked() {

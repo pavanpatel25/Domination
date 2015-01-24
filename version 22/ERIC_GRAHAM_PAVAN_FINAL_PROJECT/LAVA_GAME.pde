@@ -1,5 +1,7 @@
 class LAVA { 
+  //background image of volcano
   PImage volcano;
+  
   float x = 400;
   float y = 500;
   LavaMonster[] lava = new LavaMonster[1];
@@ -14,6 +16,7 @@ class LAVA {
   Fireball2 f2;
 
   LAVA() {
+    
     volcano = loadImage("volcano.jpg");
     for (int i=0; i<1; i++) {
       lava[i] = new LavaMonster();
@@ -70,7 +73,6 @@ class LavaMonster {
       ellipse(loc.x, loc.y, sz, sz);
       ellipse(loc.x, loc.y+sz, sz, sz*2);
       sz=sz*0.9975;
-
       if (sz>25) {
         if (loc.y>675) {
           sz=sz+1;
@@ -87,10 +89,11 @@ class LavaMonster {
   }
 
   void rev() {
-    if (loc.y+sz/2>600) {
+    //motion of the lava
+    if (loc.y+sz/2>=600) {
       vel.y=-abs(vel.y);
     }
-    if (loc.y-sz/2<100) {
+    if (loc.y-sz/2<=100) {
       vel.y=abs(vel.y);
     }
     if (loc.y+sz2/2>600) {
@@ -161,35 +164,47 @@ class Player {
   }
 
   void move() {
-    if (loc.y<750 && loc.y>50) {
-      if (loc.x<750 &&loc.x>50) {
-        if (key==CODED) {
-          if (keyCode==UP) {
-            vel.y=-abs(vel.y);
-            loc.add(vel);
-          }
-        }
-        if (key==CODED) {
-          if (keyCode==RIGHT) {
-            vel.x=abs(vel.x);
-            loc.add(vel);
-          }
-        }
-        if (key==CODED) {
-          if (keyCode==DOWN) {
-            vel.y=abs(vel.y);
-            loc.add(vel);
-          }
-        }
-        if (key==CODED) {
-          if (keyCode==LEFT) {
-            vel.x=-abs(vel.x);
-            loc.add(vel);
-          }
-        }
+    println(loc.y);
+    if (loc.y >=760) {
+      loc.y = 760;
+    }
+    if (loc.x >= 750) {
+      loc.x = 750;
+    }
+    if(loc.y <= 0) {
+      loc.y = 0;
+    }
+    if(loc.x <= 0) {
+      loc.x = 0;
+    }
+
+    if (key==CODED) {
+      if (keyCode==UP) {
+        vel.y=-abs(vel.y);
+        loc.add(vel);
+      }
+    }
+    if (key==CODED) {
+      if (keyCode==RIGHT) {
+        vel.x=abs(vel.x);
+        loc.add(vel);
+      }
+    }
+    if (key==CODED) {
+      if (keyCode==DOWN) {
+        vel.y=abs(vel.y);
+        loc.add(vel);
+      }
+    }
+    if (key==CODED) {
+      if (keyCode==LEFT) {
+        vel.x=-abs(vel.x);
+        loc.add(vel);
       }
     }
   }
+
+
 
 
 
@@ -198,7 +213,7 @@ class Player {
       ellipse(loce.x, loce.y, 50, 50);
       loce.add(vele);
       if (loce.x<0-25 || loce.x>800+25 || loce.y<0-25 ||loce.y>800+25) {
-        
+
         loce.x=loc.x;
         loce.y=loc.y;
       }
@@ -264,6 +279,7 @@ class Fireball2 {
     ellipse(loc.x, loc.y, 50, 50);
   }
 
+//movement
   void move() {
     if (loc.y>360) {
       vel.x=1;
@@ -271,6 +287,7 @@ class Fireball2 {
     loc.add(vel);
   }
 
+//making more lava
   void reappear() {
     if (loc.x>825) {
       loc.x=575;
@@ -280,6 +297,7 @@ class Fireball2 {
     }
   }
 
+//shooting at the lava monster
   void shoot(Player p) {
     if (loc.dist(p.loc)<25 || time == 1) {
       p.loc.x=10000;

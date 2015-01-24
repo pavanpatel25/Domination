@@ -2,29 +2,29 @@
 class LAVA {
   //Background picture
   PImage volcano;
-  
+
   //Character's location
   float x = 400;
   float y = 500;
-  
+
   //Declare array
   LavaMonster[] lava = new LavaMonster[1];
-  
+
   //Declare player
   Player p;
-  
+
   //Declare picture
   PImage knight;
-  
+
   //Declare shooting variables
   float xe1 = 400;
   float ye1 = 360;
   float xe2 = 575;
   float ye2 = -25;
-  
+
   //Declare time to end the game
   int time;
-  
+
   //Declare fireballs
   Fireball1 f1;
   Fireball2 f2;
@@ -33,26 +33,26 @@ class LAVA {
   LAVA() {
     //Background image
     volcano = loadImage("volcano.jpg");
-    
+
     //Declare lava monster
     for (int i=0; i<1; i++) {
       lava[i] = new LavaMonster();
     }
-    
+
     //Declare player and image
     p = new Player();
     knight = loadImage("dinosaur.png");
-    
+
     //Declare fireballs
     f1 = new Fireball1();
     f2 = new Fireball2();
   }
   //Declater a master void to bring everything together - summing up all miniclasses
   void game() {
-    \\Declare background and background image
+    //Declare background and background image
     background(255, 255, 255);
     image(volcano, 0, 0, 800, 800);
-    
+
     //Declare miniclasses
     for (int i=0; i<1; i++) {
       //Lava monster
@@ -102,7 +102,7 @@ class LavaMonster {
     if (loc.dist(p.loc)>10) {
       fill(250, 75, 0);
       noStroke();
-      
+
       //Lava monster
       ellipse(loc.x, loc.y, sz, sz);
       ellipse(loc.x, loc.y+sz, sz, sz*2);
@@ -122,7 +122,7 @@ class LavaMonster {
   void move() {
     loc.add(vel);
   }
-  
+
   //Bouncing the lava monster, part 1
   void rev() {
     if (loc.y+sz/2>600) {
@@ -135,7 +135,7 @@ class LavaMonster {
       vel.y=-abs(vel.y);
     }
   }
-  
+
   //Bouncing the lava monster, part 2
   void bounce() {
     if (loc.x+sz/2>800) {
@@ -151,14 +151,14 @@ class LavaMonster {
       vel.x=abs(vel.x);
     }
   }
-  
+
   //The lava monster/fireballs/player interaction
   void shoot(Player p) {
     fill(250, 0, 0);
     if (loc.y>500) {
       sz2=100;
       ellipse(loc.x, loc.y, sz2, sz2);
-      
+
       //If the player is hit
       if (loc.dist(p.loc)<sz2/2) {
         p.loc.x=10000;
@@ -247,7 +247,7 @@ class Fireball1 {
   int time = 0;
 
   Fireball1() {
-  //Initialize some variables
+    //Initialize some variables
     loc = new PVector(400, 360);
     vel = new PVector(0, 0);
   }
@@ -256,7 +256,7 @@ class Fireball1 {
   void display() {
     ellipse(loc.x, loc.y, 50, 50);
   }
-  
+
   //Move the fireball
   void move() {
     //Moving to the side
@@ -270,7 +270,7 @@ class Fireball1 {
     }
     loc.add(vel);
   }
-  
+
   //Reappearing after moving off the screen
   void reappear() {
     if (loc.x<-25) {
@@ -280,7 +280,7 @@ class Fireball1 {
       vel.y=0;
     }
   }
-  
+
   //Attacking the player
   void shoot(Player p) {
     if (loc.dist(p.loc)<25 || time == 1) {
@@ -302,7 +302,7 @@ class Fireball2 {
     loc = new PVector(575, -25);
     vel = new PVector(0, 1);
   }
-  
+
   //Draw the fireball
   void display() {
     ellipse(loc.x, loc.y, 50, 50);
@@ -337,3 +337,4 @@ class Fireball2 {
     }
   }
 }
+

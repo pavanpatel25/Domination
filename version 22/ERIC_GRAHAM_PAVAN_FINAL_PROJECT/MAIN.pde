@@ -41,12 +41,16 @@ AudioPlayer donde;
 
 void setup() {
   size(1440, 900);
+
+  //loading backgrounds and cursor
   Main = loadImage("Main Screen Background.png");
   cursor = loadImage("cursor.png");
   bkg2 = loadImage("Main Screen Background2.png");
   knight = loadImage("dinosaurback.png");
   textAlign(CENTER, CENTER);
   textSize(50);
+
+  //loading mini games
   b = new BASKETBALL();
   r1 = new RACINGEASY();
   r2 = new RACINGMEDIUM();
@@ -54,8 +58,9 @@ void setup() {
   m = new A();
   l = new LASERS();
   lm = new LAVA();
-  noCursor();
 
+  noCursor();
+  //loading sound files
   minim = new Minim(this);
   hoops = minim.loadFile("Happy.mp3");
   pew_pew = minim.loadFile("Funk.mp3");
@@ -65,12 +70,16 @@ void setup() {
 }
 
 void draw() {
+
+  //main screen 
   if (gamevariable == 0) {
     imageMode(CORNER);
     image(Main, 0, 0);
     image(cursor, mouseX, mouseY);
     b.time = 0;
     b.score = 0;
+
+    //creating buttons
     if (mousePressed) {
       if (mouseY>513 && mouseY<639) {
         //BasketBall
@@ -111,6 +120,7 @@ void draw() {
     b = new BASKETBALL();
     hoops.close();
   }
+
   //RACING STOP/START
   if (gamevariable == 2 ) {
     image(bkg2, 0, 0);
@@ -121,6 +131,8 @@ void draw() {
     image(bkg2, 0, 0);
     image(cursor, mouseX, mouseY);
     if (mousePressed) {
+
+      //choosing between three racing levels
       if (mouseX>308 && mouseX<638) {
         if (mouseY>636 && mouseY<709) {
           gamevariable = 101;
@@ -158,6 +170,8 @@ void draw() {
       }
     }
   }
+
+  //easy level start/stop
   if (gamevariable == 101) {
     r1.bkg();
     r1.obstacles();
@@ -165,11 +179,14 @@ void draw() {
     r1.crash();
     vroom.play();
   }
+
   if (gamevariable == 101 && r1.time2 >=60) {
     gamevariable = 0;
     r1 = new RACINGEASY();
     vroom.close();
   }
+
+  //medium level start/stop
   if (gamevariable == 102) {
     r2.bkg();
     r2.obstacles();
@@ -182,6 +199,8 @@ void draw() {
     r2 = new RACINGMEDIUM();
     vroom.close();
   }
+
+  //hard level start/stop
   if (gamevariable == 103) {
     r3.bkg();
     r3.obstacles();
@@ -233,6 +252,7 @@ void draw() {
   }
 }
 void mouseClicked() {
+  //mouseclicking for basketbal game
   if (gamevariable == 1) {
     b.a.add(new BBall(b.x, b.y, -1*b.speed));
     b.speed = 0;

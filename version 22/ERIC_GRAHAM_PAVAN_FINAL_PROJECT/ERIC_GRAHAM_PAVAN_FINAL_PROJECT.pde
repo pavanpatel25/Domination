@@ -1,4 +1,3 @@
-
 class BASKETBALL {
   //score and time
   int score, time;
@@ -60,7 +59,7 @@ class BASKETBALL {
     rect(0, 0, 150, 50);
     fill(255, 0, 0);
     rect(0, 0, speed*4, 50);
-    
+
     //basketball hoop and backboard
     fill(0);
     rect(0, height/2-100, 20, 200);

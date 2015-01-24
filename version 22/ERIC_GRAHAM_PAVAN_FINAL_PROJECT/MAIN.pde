@@ -37,6 +37,8 @@ AudioPlayer hoops;
 AudioPlayer pew_pew;
 AudioPlayer pokemon;
 AudioPlayer vroom;
+AudioPlayer vroom2;
+AudioPlayer vroom3;
 AudioPlayer donde;
 
 void setup() {
@@ -66,6 +68,8 @@ void setup() {
   pew_pew = minim.loadFile("Funk.mp3");
   pokemon = minim.loadFile("pokemon.mp3");
   vroom = minim.loadFile("Power.mp3");
+  vroom2 = minim.loadFile("Power.mp3");
+  vroom3 = minim.loadFile("Power.mp3");
   donde = minim.loadFile("pokemon.mp3");
 }
 
@@ -192,12 +196,12 @@ void draw() {
     r2.obstacles();
     r2.car();
     r2.crash();
-    vroom.play();
+    vroom2.play();
   }
   if (gamevariable == 102 && r2.time2 >=60) {
     gamevariable = 0;
     r2 = new RACINGMEDIUM();
-    vroom.close();
+    vroom2.close();
   }
 
   //hard level start/stop
@@ -206,12 +210,12 @@ void draw() {
     r3.obstacles();
     r3.car();
     r3.crash();
-    vroom.play();
+    vroom3.play();
   }
   if (gamevariable == 103 && r3.time2 >=60) {
     gamevariable = 0;
     r3 = new RACINGHARD();
-    vroom.close();
+    vroom3.close();
   }
 
   //LAVAMONSTER STOP/START

@@ -47,7 +47,7 @@ class LAVA {
     f1 = new Fireball1();
     f2 = new Fireball2();
   }
-  //Declater a master void to bring everything together - summing up all miniclasses
+  //Declare a master void to bring everything together - summing up all miniclasses
   void game() {
     //Declare background and background image
     background(255, 255, 255);
@@ -68,7 +68,7 @@ class LAVA {
       //Player
       p.display();
       p.move();
-      p.poww();
+      p.ellip();
       //Fireballs
       f1.display();
       f1.move();
@@ -125,10 +125,10 @@ class LavaMonster {
 
   //Bouncing the lava monster, part 1
   void rev() {
-    if (loc.y+sz/2>600) {
+    if (loc.y+sz/2>=600) {
       vel.y=-abs(vel.y);
     }
-    if (loc.y-sz/2<100) {
+    if (loc.y-sz/2<=100) {
       vel.y=abs(vel.y);
     }
     if (loc.y+sz2/2>600) {
@@ -178,6 +178,10 @@ class LavaMonster {
         time = 1;
       }
     }
+    if (loc.dist(p.loce)<sz2/2) {
+      text("YOU WIN!", 400, 400);
+      time = 1;
+    }
   }
 }
 
@@ -185,23 +189,39 @@ class LavaMonster {
 class Player {
   //Declare variables
   PImage knight;
-  PVector loc, vel, pos;
+  PVector loc, vel, pos, loce, vele;
 
   Player() {
     //Initialize some variables
     loc = new PVector(380, 700);
     vel = new PVector(1, 1);
     pos = new PVector(400, 710);
+    loce = new PVector(400, 700);
+    vele = new PVector (random(-5, 5), random(-5, 5));
     knight = loadImage("dinosaur.png");
   }
 
   void display() {
     //Display the character and weapon
-    ellipse(pos.x, pos.y, 5, 5);
+    //    ellipse(pos.x, pos.y, 5, 5);
     image(knight, loc.x, loc.y, 40, 40);
   }
 
   void move() {
+    //keeping character from going off the screen
+    if (loc.y >=760) {
+      loc.y = 760;
+    }
+    if (loc.x >= 750) {
+      loc.x = 750;
+    }
+    if (loc.y <= 0) {
+      loc.y = 0;
+    }
+    if (loc.x <= 0) {
+      loc.x = 0;
+    }
+
     //Moving the character
     if (key==CODED) {
       if (keyCode==UP) {
@@ -229,13 +249,19 @@ class Player {
     }
   }
 
-  void poww() {
-    //Shooting the weapon
-    if (mousePressed) {
-      pos.y=pos.y-10;
-    }
-    if (pos.y<0) {
-      pos.y=700;
+  //Shooting the weapon
+  void ellip() {
+    if (mousePressed==true) {
+      ellipse(loce.x, loce.y, 50, 50);
+      loce.add(vele);
+      if (loce.x<0-25 || loce.x>800+25 || loce.y<0-25 ||loce.y>800+25) {
+
+        loce.x=loc.x;
+        loce.y=loc.y;
+      }
+    } else {
+      loce.x=loc.x;
+      loce.y=loc.y;
     }
   }
 }

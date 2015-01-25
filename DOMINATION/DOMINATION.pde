@@ -175,7 +175,7 @@ void draw() {
     }
   }
 
-  //easy level start/stop
+  //easy level start+stop
   if (gamevariable == 101) {
     r1.bkg();
     r1.obstacles();
@@ -190,7 +190,7 @@ void draw() {
     vroom.close();
   }
 
-  //medium level start/stop
+  //medium level start+stop
   if (gamevariable == 102) {
     r2.bkg();
     r2.obstacles();
@@ -204,7 +204,7 @@ void draw() {
     vroom2.close();
   }
 
-  //hard level start/stop
+  //hard level start+stop
   if (gamevariable == 103) {
     r3.bkg();
     r3.obstacles();
@@ -218,7 +218,7 @@ void draw() {
     vroom3.close();
   }
 
-  //LAVAMONSTER STOP/START
+  //LAVAMONSTER STOP+START
   if (gamevariable == 3 && lm.time <=180) {
     lm.game();
     pokemon.play();
@@ -229,7 +229,7 @@ void draw() {
     pokemon.close();
   }
 
-  //MAZE GAME STOP/START
+  //MAZE GAME STOP+START
   if (gamevariable == 4 && m.time <=180) {
     fill(50);
     m.display();
@@ -244,7 +244,7 @@ void draw() {
     donde.close();
   }
 
-  //LASER GAME STOP/START
+  //LASER GAME STOP+START
   if (gamevariable == 5 && l.time <=180) {
     l.game();
     pew_pew.play();
@@ -256,7 +256,7 @@ void draw() {
   }
 }
 void mouseClicked() {
-  //mouseclicking for basketbal game
+  //mouseclicking for basketball game
   if (gamevariable == 1) {
     b.a.add(new BBall(b.x, b.y, -1*b.speed));
     b.speed = 0;
